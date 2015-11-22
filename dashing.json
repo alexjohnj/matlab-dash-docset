@@ -1,0 +1,12 @@
+{
+  "name": "MATLAB",
+  "package": "matlab",
+  "index": "index.html",
+  "selectors": {
+  },
+  "ignore": [
+    "ABOUT"
+  ],
+  "icon32x32": "",
+  "allowJS": false
+}
