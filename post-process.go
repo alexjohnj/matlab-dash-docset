@@ -6,6 +6,7 @@ import(
 	"path/filepath"
 	"log"
 	"net/url"
+	"strings"
 )
 
 func main() {
@@ -47,9 +48,11 @@ func walkFunction(path string, info os.FileInfo, err error) error {
 }
 
 func buildSectionTOC(doc *goquery.Document) {
-	doc.Find("#doc_center_content h2").Each(func(i int, s *goquery.Selection){
+	doc.Find("#doc_center_content h2").Each(func(i int, s *goquery.Selection) {
 		sectionName := s.Text()
-		sectionElement := "<a name=\"//apple_ref/cpp/Section/" + url.QueryEscape(sectionName) + "\" class=\"dashAnchor\"></a>"
+		sectionElement := "<a name=\"//apple_ref/cpp/Section/"
+		sectionElement += strings.Replace(url.QueryEscape(sectionName), "+", "%20", -1)
+		sectionElement += "\" class=\"dashAnchor\"></a>"
 		s.WrapHtml(sectionElement)
 	})
 }
