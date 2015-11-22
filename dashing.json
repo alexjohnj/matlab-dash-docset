@@ -17,7 +17,15 @@
     },
     "#pgtype-topic h2.r2015b": "Guide",
     "#pgtype-ref .sysobj_ref h1.r2015b": "Object",
+
     "#pgtype-ref-function h1.r2015b": "Function",
+    "#pgtype-ref-function .input_argument_container .argument_name code": "Parameter",
+    "#pgtype-ref-function .output_argument_container .argument_name code": "Value",
+    "#pgtype-ref-function h2#syntax": "Section",
+    "#pgtype-ref-function h2#description": "Section",
+    "#pgtype-ref-function h2#examples": "Section",
+    "#pgtype-ref-function h2#moreabout": "Section",
+
     "#pgtype-landingpage h1.r2015b": "Library"
   },
   "ignore": [
