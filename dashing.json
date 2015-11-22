@@ -1,7 +1,7 @@
 {
   "name": "MATLAB",
   "package": "matlab",
-  "index": "index.html",
+  "index": "matlab/index.html",
   "selectors": {
   },
   "ignore": [
