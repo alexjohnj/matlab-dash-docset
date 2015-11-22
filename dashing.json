@@ -3,6 +3,7 @@
   "package": "matlab",
   "index": "matlab/index.html",
   "selectors": {
+    "#pgtype-ref .method_ref h1.r2015b": "Method",
     "#pgtype-ref > .class_ref h1.r2015b": {
       "type": "Class",
       "regexp": " class",
