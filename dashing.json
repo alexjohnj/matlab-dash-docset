@@ -3,6 +3,12 @@
   "package": "matlab",
   "index": "matlab/index.html",
   "selectors": {
+    "#pgtype-ref .properties_ref h1.r2015b": {
+      "type": "Object",
+      "regexp" :" Properties",
+      "replacement": ""
+    },
+    "#pgtype-ref .properties_ref div[itemprop='property'] > h3 span[itemscope]": "Property",
     "#pgtype-ref .method_ref h1.r2015b": "Method",
     "#pgtype-ref > .class_ref h1.r2015b": {
       "type": "Class",
