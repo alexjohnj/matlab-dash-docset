@@ -1,11 +1,11 @@
 package main
 
-import(
+import (
 	"github.com/PuerkitoBio/goquery"
-	"os"
-	"path/filepath"
 	"log"
 	"net/url"
+	"os"
+	"path/filepath"
 	"strings"
 )
 
@@ -31,14 +31,14 @@ func walkFunction(path string, info os.FileInfo, err error) error {
 		log.Fatal(err)
 	}
 
-	doc.Find(".sticky_header_container").Each(func(i int, s *goquery.Selection){
+	doc.Find(".sticky_header_container").Each(func(i int, s *goquery.Selection) {
 		s.Remove()
-	});
+	})
 	// doc.Find("#sidebar").First().Remove()
 	buildSectionTOC(doc)
 
 	htmlContent, _ := doc.Html()
-	file.Seek(0,0)
+	file.Seek(0, 0)
 	_, err = file.WriteString(htmlContent)
 	if err != nil {
 		log.Fatal(err)
