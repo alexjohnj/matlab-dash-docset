@@ -15,7 +15,9 @@
     "#pgtype-landingpage h1.r2015b": "Library"
   },
   "ignore": [
-    "ABOUT"
+    "ABOUT",
+    "Bibliography",
+    "Selected Bibliography"
   ],
   "icon32x32": "",
   "allowJS": true
