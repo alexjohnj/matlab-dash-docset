@@ -3,6 +3,11 @@
   "package": "matlab",
   "index": "matlab/index.html",
   "selectors": {
+    "#pgtype-ref > .class_ref h1.r2015b": {
+      "type": "Class",
+      "regexp": " class",
+      "replacement": ""
+    },
     "#pgtype-topic h2.r2015b": "Guide",
     "#pgtype-ref .sysobj_ref h1.r2015b": "Object",
     "#pgtype-ref-function h1.r2015b": "Function",
