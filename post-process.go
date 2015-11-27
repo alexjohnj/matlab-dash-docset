@@ -36,6 +36,7 @@ func walkFunction(path string, info os.FileInfo, err error) error {
 	})
 	// doc.Find("#sidebar").First().Remove()
 	buildSectionTOC(doc)
+	buildInputTOC(doc)
 
 	htmlContent, _ := doc.Html()
 	file.Seek(0, 0)
@@ -45,6 +46,16 @@ func walkFunction(path string, info os.FileInfo, err error) error {
 	}
 	file.Sync()
 	return nil
+}
+
+func buildInputTOC(doc *goquery.Document) {
+	doc.Find(".input_argument_container .argument_name code").Each(func(i int, s *goquery.Selection) {
+		inputName := s.Text()
+		inputLinkElement := "<a name=\"//apple_ref/cpp/Parameter/"
+		inputLinkElement += strings.Replace(url.QueryEscape(inputName), "+", "%20", -1)
+		inputLinkElement += "\" class=\"dashAnchor\"></a>"
+		s.WrapHtml(inputLinkElement)
+	})
 }
 
 func buildSectionTOC(doc *goquery.Document) {
