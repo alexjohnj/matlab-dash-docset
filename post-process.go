@@ -31,10 +31,7 @@ func walkFunction(path string, info os.FileInfo, err error) error {
 		log.Fatal(err)
 	}
 
-	doc.Find(".sticky_header_container").Each(func(i int, s *goquery.Selection) {
-		s.Remove()
-	})
-	// doc.Find("#sidebar").First().Remove()
+	cleanDocument(doc)
 	buildSectionTOC(doc)
 	buildInputTOC(doc)
 	buildOutputTOC(doc)
@@ -47,6 +44,14 @@ func walkFunction(path string, info os.FileInfo, err error) error {
 	}
 	file.Sync()
 	return nil
+}
+
+func cleanDocument(doc *goquery.Document) {
+	doc.Find(".sticky_header_container").Remove()
+	doc.Find("#sidebar").Remove()
+	doc.Find(".body_trail_container").Remove()
+	doc.Find(".row-offcanvas .row-offcanvas-left .active").RemoveClass("active")
+	doc.Find("#go-top").Remove()
 }
 
 func buildInputTOC(doc *goquery.Document) {
