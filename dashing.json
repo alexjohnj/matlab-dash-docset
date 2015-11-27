@@ -19,8 +19,6 @@
     "#pgtype-ref .sysobj_ref h1.r2015b": "Object",
 
     "#pgtype-ref-function h1.r2015b": "Function",
-    "#pgtype-ref-function .output_argument_container .argument_name code": "Value",
-
     "#pgtype-landingpage h1.r2015b": "Library"
   },
   "ignore": [
