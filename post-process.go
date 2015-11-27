@@ -37,12 +37,11 @@ func walkFunction(path string, info os.FileInfo, err error) error {
 	buildOutputTOC(doc)
 
 	htmlContent, _ := doc.Html()
-	file.Seek(0, 0)
+	file.Truncate(0)
 	_, err = file.WriteString(htmlContent)
 	if err != nil {
 		log.Fatal(err)
 	}
-	file.Sync()
 	return nil
 }
 
