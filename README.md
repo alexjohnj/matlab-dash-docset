@@ -1,29 +1,36 @@
 # MATLAB Documentation for Dash
 
-This is a very simple configuration file for [Dashing][dashing-cli]
-with which you generate MATLAB documentation for
-[Dash][dash-app]. Since Mathworks doesn't like people redistributing
-their documentation, you need to build the documentation
-yourself. Here's how you do that:
+Mathworks doesn't like people redistributing their documentation, so the
+wonderful [Dash][dash-app] doesn't include any MATLAB documentation out of the
+box. This repository contains a configuration file for [Dashing][dashing-cli]
+and a custom post-processing script (well, Go program) to generate a MATLAB
+docset for Dash using your local copy of the documentation. No copyright
+infringement required!
 
-1. Install [Dashing][dashing-cli].
+Here's what you'll need to do:
+
+1. Install [Go][golang], [Dashing][dashing-cli] and [goquery][goquery-github].
 2. Clone this repository.
-3. Copy the `dashing.json` file to the root of your MATLAB
-   installation's help directory. On a Mac, this is
+3. Copy `dashing.json` and `post-processing.go` to the root of your MATLAB
+   installation's help directory. On a Mac, this is at
    `/Applications/MATLAB_R2015b.app/help`.
-4. Run `dashing build` in the MATLAB help folder.
-5. Add the newly generated `matlab.docset` file to Dash.
+4. Run `dashing build` from the root of the MATLAB help folder.
+5. Run `go post-processing.go` from the root of the MATLAB help folder.
+6. Add the newly generated `matlab.docset` file to Dash.
 
-If you're using a version of MATLAB other than r2015b, you'll need to
-edit the `dashing.json` file and replace all instances of `r2015b`
-with whatever your version number is.
+If you're using a version of MATLAB other than r2015b, you'll need to edit the
+`dashing.json` file and replace all instances of `r2015b` with whatever your
+version number is.
 
 [dashing-cli]: https://github.com/technosophos/dashing
 [dash-app]: https://kapeli.com/dash
+[golang]: http://golang.org
+[goquery-github]: http://github.com/PuerkitoBio/goquery
 
-## Completeness
+## What Gets Indexed
 
-Currently, the following types of pages are indexed in Dash:
+When you run `dashing build` the following parts of the documentation are
+indexed:
 
 - Functions
 - Objects
@@ -31,45 +38,41 @@ Currently, the following types of pages are indexed in Dash:
 - Toolboxes (Libraries in Dash)
 - Methods
 - Properties
-- Input Arguments (Parameters in Dash)
-- Output Arguments (Values in Dash)
 - Guides
 
-In terms of table of contents support, some functions get a table of
-contents with their input arguments and output arguments as well as
-links to different sections of the documentation. Some functions don't
-get a TOC because Mathworks is anything but consistent with the
-structure of its documentation.
+When you run `post-processing.go`, it'll try and add a table of contents for
 
-Graphics objects get a table of contents with all of their properties
-in.
+- Sections
+- Input arguments
+- Output variables
+
+Sections are generated from `h2` elements in the documentation, and work pretty
+reliably. Inputs and outputs are less reliable because they aren't represented
+consistently throughout the documentation and so are harder to detect.
+
+Note that Dash doesn't have a table of contents type for inputs/outputs to/from
+functions so I've put them under the parameters/values types respectively. The
+former makes sense, the latter, not so much.
+
+## The Post-Processing "Script"
+
+As already mentioned, `post-processing.go` is responsible for building the
+table of contents in Dash for (some of) the documentation. In addition, the
+script cleans up the documentation a bit. Notably, it removes the sidebar
+(which is redundant with the TOC), the header (redundant and obscures anchor
+links) and the general links at the bottom of each page.
 
 ## Things To Do
 
-There's a lot to do to improve the quality of the conversion. Here's
-some of the things I want to do:
+There's plenty of things to do to improve the generated documentation. The HTML
+structure of the documentation is anything but consistent. As a result, there's
+lots of cases where functions don't get a TOC or objects' methods aren't
+detected. MATLAB has tonnes of documentation, so there's no way I'm going to
+find all of these. If you run into anything that doesn't get indexed but seems
+like it should, just file an issue.
 
-- Write a post-processing script (see below).
-- Improve the reliability of TOC generation for functions.
-- Generate a TOC for classes.
-- Generate a TOC for objects.
-- Generate a TOC for methods.
-- Get an "input arguments" and "output arguments" entry type added to
-  Dash.
-
-## On a Post-Processing Script
-
-A post-processing script would go a long way in improving the quality
-of the outputted documentation. While it doesn't exist yet, here's
-what a hypothetical post-processing script might do:
-
-- Remove the header and sidebar from the documentation.
-- Ensure that all examples are expanded/collapsed by default (your
-  choice).
-- Generate TOC links for input and output arguments. This is currently
-  handled by Dashing but results in the input and output arguments
-  being search-able. Considering these tend to have names like `X` and
-  `Y`, these results just clutter the search results. A
-  post-processing script should be able to add the TOC without
-  generating search results.
- - Generate section links in the TOC for guides.
+There's also the issue of toolboxes. I have a couple of toolboxes and, AFAIK,
+their functions, objects, guides etc. are indexed. Unfortunately, given the
+aforementioned inconsistency of the documentation's HTML structure, I'm not
+sure other toolboxes will be indexed. Again, if you come across any problems,
+file an issue.
