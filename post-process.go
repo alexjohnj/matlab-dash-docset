@@ -51,6 +51,7 @@ func cleanDocument(doc *goquery.Document) {
 	doc.Find(".body_trail_container").Remove()
 	doc.Find(".row-offcanvas .row-offcanvas-left .active").RemoveClass("active")
 	doc.Find("#go-top").Remove()
+	doc.Find(".feedbackblock").Remove()
 }
 
 func buildInputTOC(doc *goquery.Document) {
