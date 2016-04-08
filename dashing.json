@@ -3,23 +3,23 @@
   "package": "matlab",
   "index": "matlab/index.html",
   "selectors": {
-    "#pgtype-ref .properties_ref h1.r2015b": {
+    "#pgtype-ref .properties_ref h1.r2016a": {
       "type": "Object",
       "regexp" :" Properties",
       "replacement": ""
     },
     "#pgtype-ref .properties_ref div[itemprop='property'] > h3 span[itemscope]": "Property",
-    "#pgtype-ref .method_ref h1.r2015b": "Method",
-    "#pgtype-ref > .class_ref h1.r2015b": {
+    "#pgtype-ref .method_ref h1.r2016a": "Method",
+    "#pgtype-ref > .class_ref h1.r2016a": {
       "type": "Class",
       "regexp": " class",
       "replacement": ""
     },
-    "#pgtype-topic h2.r2015b": "Guide",
-    "#pgtype-ref .sysobj_ref h1.r2015b": "Object",
+    "#pgtype-topic h2.r2016a": "Guide",
+    "#pgtype-ref .sysobj_ref h1.r2016a": "Object",
 
-    "#pgtype-ref-function h1.r2015b": "Function",
-    "#pgtype-landingpage h1.r2015b": "Library"
+    "#pgtype-ref-function h1.r2016a": "Function",
+    "#pgtype-landingpage h1.r2016a": "Library"
   },
   "ignore": [
     "ABOUT",

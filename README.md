@@ -13,13 +13,13 @@ Here's what you'll need to do:
 2. Clone this repository.
 3. Copy `dashing.json` and `post-processing.go` to the root of your MATLAB
    installation's help directory. On a Mac, this is at
-   `/Applications/MATLAB_R2015b.app/help`.
+   `/Applications/MATLAB_R2016a.app/help`.
 4. Run `dashing build` from the root of the MATLAB help folder.
 5. Run `go post-processing.go` from the root of the MATLAB help folder.
 6. Add the newly generated `matlab.docset` file to Dash.
 
-If you're using a version of MATLAB other than r2015b, you'll need to edit the
-`dashing.json` file and replace all instances of `r2015b` with whatever your
+If you're using a version of MATLAB other than r2016a, you'll need to edit the
+`dashing.json` file and replace all instances of `r2016a` with whatever your
 version number is.
 
 [dashing-cli]: https://github.com/technosophos/dashing
