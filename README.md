@@ -15,7 +15,7 @@ Here's what you'll need to do:
    installation's help directory. On a Mac, this is at
    `/Applications/MATLAB_R2016a.app/help`.
 4. Run `dashing build` from the root of the MATLAB help folder.
-5. Run `go post-processing.go` from the root of the MATLAB help folder.
+5. Run `go run post-process.go` from the root of the MATLAB help folder.
 6. Add the newly generated `matlab.docset` file to Dash.
 
 If you're using a version of MATLAB other than r2016a, you'll need to edit the
